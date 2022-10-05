@@ -251,11 +251,12 @@ def pregunta_12():
 
     lista = []
     for valor in df["_c5a"]:
-        string = ""
+        string = "hola"
         for i in valor:
-            string = string + i
+            string = string + ',' + i
         lista.append(string)
     df['_c5'] = lista
+    df['_c5'] = df['_c5'].str.replace('hola,','')
     del df['_c5a']
 
     return df
