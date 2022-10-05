@@ -234,7 +234,31 @@ def pregunta_12():
     38   38                    eee:0,fff:9,iii:2
     39   39                    ggg:3,hhh:8,jjj:5
     """
-    return
+
+    diccionario = {}
+    for i in range (len(tbl2)):
+        if tbl2.loc[i]["_c0"] in diccionario:
+            diccionario[tbl2.loc[i]["_c0"]] = diccionario[tbl2.loc[i]["_c0"]] + "," + tbl2.loc[i]["_c5a"] + ":" + str(tbl2.loc[i]["_c5b"])
+        else:
+            diccionario[tbl2.loc[i]["_c0"]] = tbl2.loc[i]["_c5a"] + ":" + str(tbl2.loc[i]["_c5b"])
+            
+    for k,v in diccionario.items():
+        lista = v.split(",")
+        lista.sort()
+        diccionario[k] = lista
+    df = pd.DataFrame({"_c0": diccionario.keys(),
+            "_c5a" : diccionario.values()})
+
+    lista = []
+    for valor in df["_c5a"]:
+        string = ""
+        for i in valor:
+            string = string + i
+        lista.append(string)
+    df['_c5'] = lista
+    del df['_c5a']
+
+    return df
 
 
 def pregunta_13():
@@ -251,4 +275,4 @@ def pregunta_13():
     E    275
     Name: _c5b, dtype: int64
     """
-    return
+    return tbl0.merge(tbl2, right_on = '_c0', left_on = '_c0').groupby('_c1').sum()['_c5b']
