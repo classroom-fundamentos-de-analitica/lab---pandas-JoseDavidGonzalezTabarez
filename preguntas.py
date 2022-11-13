@@ -120,27 +120,28 @@ def pregunta_09():
     tbl0['year'] = tbl0['_c3'].str.slice(0, 4)
     
     return tbl0
-#def pregunta_10():
+def pregunta_10():
 
- #   tablaN = tbl0[["_c1", "_c2"]].copy().set_index("_c2").groupby("_c1")
-  #  proc = {g:":".join(sorted([str(x) for x in c])) for g,c in tablaN.groups.items()}
+    tablaN = tbl0[["_c1", "_c2"]].copy().set_index("_c2").groupby("_c1")
+    proc = {g:":".join(sorted([str(x) for x in c])) for g,c in tablaN.groups.items()}
     
     
-   # return pd.DataFrame({"_c1":proc.keys(), "_c2":proc.values()}).set_index("_c1")
+    return pd.DataFrame({"_c1":proc.keys(), "_c2":proc.values()}).set_index("_c1")
 
-# def pregunta_11():
+}def pregunta_11():
+    
+    dataf = pd.DataFrame()
+    for letra in tbl1["_c0"].unique():
+        df = np.where(tbl1["_c0"]==letra,tbl1["_c4"],"")
+        df = np.delete(df, np.where(df == ""))
+       string = ""
+        for item in list(np.sort(df, axis=0)):
+            string = string + str(item) + ","
+        string = string[:-1]
+        temp = pd.DataFrame({"_c0":[letra], "_c4": string})
+        dataf = dataf.append(temp, ignore_index=True)
+    return dataf
 
-  #  dataf = pd.DataFrame()
-   # for letra in tbl1["_c0"].unique():
-    #    df = np.where(tbl1["_c0"]==letra,tbl1["_c4"],"")
-     #   df = np.delete(df, np.where(df == ""))
-     #  string = ""
-      #  for item in list(np.sort(df, axis=0)):
-       #     string = string + str(item) + ","
-       # string = string[:-1]
-       # temp = pd.DataFrame({"_c0":[letra], "_c4": string})
-       # dataf = dataf.append(temp, ignore_index=True)
-#    return dataf
 def pregunta_12():
     """
     Construya una tabla que contenga _c0 y una lista separada por ',' de los valores de
