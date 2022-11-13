@@ -133,9 +133,7 @@ def pregunta_10():
      3   D                  1:2:3:5:5:7
      4   E  1:1:2:3:3:4:5:5:5:6:7:8:8:9
      """
-
-
-tablaN = tbl0[["_c1", "_c2"]].copy().set_index("_c2").groupby("_c1")
+     tablaN = tbl0[["_c1", "_c2"]].copy().set_index("_c2").groupby("_c1")
      proc = {g:":".join(sorted([str(x) for x in c])) for g,c in tablaN.groups.items()}
      return pd.DataFrame({"_c1":proc.keys(), "_c2":proc.values()}).set_index("_c1")
 
