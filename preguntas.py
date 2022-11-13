@@ -134,7 +134,7 @@ def pregunta_11():
     for letra in tbl1["_c0"].unique():
         df = np.where(tbl1["_c0"]==letra,tbl1["_c4"],"")
         df = np.delete(df, np.where(df == ""))
-       string = ""
+        string = ""
         for item in list(np.sort(df, axis=0)):
             string = string + str(item) + ","
         string = string[:-1]
