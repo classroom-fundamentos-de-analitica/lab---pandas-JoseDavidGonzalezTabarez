@@ -128,7 +128,7 @@ def pregunta_10():
     
     return pd.DataFrame({"_c1":proc.keys(), "_c2":proc.values()}).set_index("_c1")
 
-}def pregunta_11():
+def pregunta_11():
     
     dataf = pd.DataFrame()
     for letra in tbl1["_c0"].unique():
